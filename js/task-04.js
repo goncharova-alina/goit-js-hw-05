@@ -1,5 +1,26 @@
  // Write code under this line
-  
+  class StringBuilder{
+      constructor(value){
+          this._value = value;
+      }
+      get value(){
+          return this._value;
+      }
+      set value(newValue){
+        this._value = newValue;
+      }
+      append(str){
+        this._value = this.value + str;
+      }
+      prepend(str){
+        this._value = str + this.value;
+      }
+      pad(str){
+        this.append(str);
+        this.prepend(str);
+      }
+    
+  }
 
  console.log(typeof StringBuilder);
  // 'function'
