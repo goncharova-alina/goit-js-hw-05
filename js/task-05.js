@@ -1,19 +1,14 @@
 class Car {
-    constructor(maxSpeed, speed = 0, isOn = false, distance = 0, price ){
-        this._maxSpeed = maxSpeed;
-        this._speed = speed;
-        this._isOn = isOn;
-        this._distance = distance;
-        this._price = price;
-
-    }
-    
     static getSpecs(Car){
-        return `maxSpeed: ${this.maxSpeed} 
-        speed: ${this.speed} 
-        isOn: ${this.isOn} 
-        distance: ${this.distance}
-        price: ${this.price} `
+        return `maxSpeed: ${Car.maxSpeed}, speed: ${Car.speed}, isOn: ${Car.isOn}, distance: ${Car.distance}, price: ${Car.price}`
+    }
+    constructor(Car){
+        this.maxSpeed = Car.maxSpeed;
+        this.speed = 0;
+        this.isOn = false;
+        this.distance = 0;
+        this.price = Car.price;
+
     }
     
      get price() {
@@ -25,20 +20,27 @@ class Car {
      turnOn() {
         this.isOn = true;
      }
-     turnOff() {
-        this.isOn = false;
-     }
+     turnOff() {   
+        this.isOn = false;  
+         this.speed = 0; 
+        }
      accelerate(value) {
-        if (this.speed > this.maxSpeed ){
-            this.speed = value;
-            }
-          return (this.speed = this.maxSpeed);
-     }
+        this.speed += value;
+        if (this.speed > this.maxSpeed) {
+            this.speed = this.maxSpeed;
+        }
+    }
      decelerate(value) {
-
+        this.speed -= value;
+        if (this.speed < 0) {
+            this.speed = 0;
+        }
      }
      drive(hours) {
-
+        if (this.isOn === true) {
+            this.distance += hours * this.speed;
+      }
+    
      }
    }
     
